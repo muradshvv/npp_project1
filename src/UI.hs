@@ -23,6 +23,8 @@ import Brick
   , vLimit
   , withAttr
   )
+
+  
 import Brick.BChan (BChan, newBChan, writeBChan)
 import Brick.Main (customMain, halt)
 import Control.Applicative ((<|>))
@@ -42,6 +44,7 @@ import Graphics.Vty
   , withBackColor
   , withForeColor
   )
+  
 import Graphics.Vty.CrossPlatform (mkVty)
 import qualified Graphics.Vty as Vty
 import Types
@@ -116,6 +119,8 @@ data Command
   | TogglePauseCommand
   | QuitCommand
   deriving stock (Eq, Show)
+
+
 
 commandFromEvent :: Event -> Maybe Command
 commandFromEvent event =
@@ -198,6 +203,7 @@ drawGrid state =
       vBox [drawRow y | y <- [0 .. mapHeight gameMap - 1]]
   where
     gameMap = gsMap state
+    
     drawRow y =
       hLimit dashboardWidth $
         hBox [drawCell state (Position x y) | x <- [0 .. mapWidth gameMap - 1]]
